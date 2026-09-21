@@ -22,3 +22,10 @@
 - Evidence: PROJECT.json, DECISIONS.md D-004
 - Result: L3 + risks 声明，待实施 Wazuh 采集
 - Next: 实施AI 实现 Wazuh 采集模块
+
+### 2026-09-21 | W-002 | DONE
+- Actor: 架构AI
+- Scope: 收口 W-002（Wazuh 采集模块合并 PR#5，R2 评审 APPROVED，真实数据采集验证）
+- Evidence: PR#5, work/reviews/AR-002-w002.md, 公网验证（5000 真实告警去重）
+- Result: W-002 DONE，L3 闭环
+- Next: 无（MVP + L3 升级完成）

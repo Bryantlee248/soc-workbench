@@ -8,10 +8,8 @@
   },
   "state": {
     "current_gate": "G0",
-    "active_work_items": [
-      "W-002"
-    ],
-    "next_work_item": "W-002"
+    "active_work_items": [],
+    "next_work_item": null
   },
   "authority": {
     "governance": "GOVERNANCE.md",
@@ -134,6 +132,13 @@
       "line": 7,
       "sha256": "06d66e70edefa4eae8ee576c23eff7d9fa39ca2bdf5363ec214cf641f81ee14e",
       "claim": "engine 按 fingerprint 去重并计数"
+    },
+    {
+      "id": "ANCHOR-002",
+      "path": "engine/wazuh-map.mjs",
+      "line": 7,
+      "sha256": "1022d28e3f8bf887ac57c51ab498d6f8d37c07d646d438fb80687754e6be6b59",
+      "claim": "Wazuh fingerprint 去重键"
     }
   ],
   "risks": [
