@@ -69,7 +69,8 @@
               "server/",
               "engine/",
               "test/",
-              "package.json"
+              "package.json",
+              "package-lock.json"
             ]
           }
         ]
