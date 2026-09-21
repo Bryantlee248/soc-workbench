@@ -3,13 +3,15 @@
   "project": {
     "id": "soc-workbench",
     "name": "SOC Alert Workbench",
-    "governance_level": "L2",
+    "governance_level": "L3",
     "lifecycle": "poc"
   },
   "state": {
     "current_gate": "G0",
-    "active_work_items": [],
-    "next_work_item": null
+    "active_work_items": [
+      "W-002"
+    ],
+    "next_work_item": "W-002"
   },
   "authority": {
     "governance": "GOVERNANCE.md",
@@ -42,6 +44,11 @@
       },
       {
         "id": "D-003",
+        "status": "accepted",
+        "supersedes": []
+      },
+      {
+        "id": "D-004",
         "status": "accepted",
         "supersedes": []
       }
@@ -128,5 +135,14 @@
       "sha256": "06d66e70edefa4eae8ee576c23eff7d9fa39ca2bdf5363ec214cf641f81ee14e",
       "claim": "engine 按 fingerprint 去重并计数"
     }
-  ]
+  ],
+  "risks": [
+    {
+      "id": "R-001",
+      "description": "接真实 Wazuh 告警（敏感安全数据），需控制访问与留痕",
+      "owner": "Bryantlee248",
+      "expires": "2026-12-31"
+    }
+  ],
+  "exceptions": []
 }

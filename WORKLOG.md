@@ -15,3 +15,10 @@
 - Evidence: PR#1, work/reviews/AR-001-w001.md, work/verifications/W-001/verification.md
 - Result: W-001 DONE，IWP-001 CLOSED
 - Next: 部署到 229（阶段 8）
+
+### 2026-09-21 | W-002 | STARTED
+- Actor: 架构AI
+- Scope: L2→L3 升级 + 声明风险（接真实 Wazuh 告警数据）
+- Evidence: PROJECT.json, DECISIONS.md D-004
+- Result: L3 + risks 声明，待实施 Wazuh 采集
+- Next: 实施AI 实现 Wazuh 采集模块
