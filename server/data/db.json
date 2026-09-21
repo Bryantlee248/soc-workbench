@@ -1,0 +1,52 @@
+{
+  "alerts": [
+    {
+      "id": "2aa16946-5fc2-41f9-a0a9-5f509e277be6",
+      "title": "SSH 爆破",
+      "fingerprint": "fp-ssh",
+      "source": "",
+      "severity": "high",
+      "status": "open",
+      "verdict": "pending",
+      "disposition": "pending",
+      "note": "",
+      "count": 1,
+      "createdAt": "2026-09-21T05:12:20.058Z"
+    },
+    {
+      "id": "fee9b0c3-108a-4c1a-89ea-d61db06a54ab",
+      "title": "SSH 爆破",
+      "fingerprint": "fp-ssh",
+      "source": "",
+      "severity": "high",
+      "status": "open",
+      "verdict": "pending",
+      "disposition": "pending",
+      "note": "",
+      "count": 1,
+      "createdAt": "2026-09-21T05:12:20.064Z"
+    },
+    {
+      "id": "0d0c0e18-b9ea-4b6b-a248-967c720e5ea8",
+      "title": "Web 攻击",
+      "fingerprint": "fp-web",
+      "source": "",
+      "severity": "critical",
+      "status": "resolved",
+      "verdict": "confirmed",
+      "disposition": "resolved",
+      "note": "",
+      "count": 1,
+      "createdAt": "2026-09-21T05:12:20.096Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "767eb5d9-2d30-46c3-a201-73cc64abc4ea",
+      "alert_id": "0d0c0e18-b9ea-4b6b-a248-967c720e5ea8",
+      "title": "Web 攻击",
+      "disposition": "resolved",
+      "createdAt": "2026-09-21T05:12:20.128Z"
+    }
+  ]
+}
