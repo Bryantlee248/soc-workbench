@@ -1,4 +1,4 @@
-const API = ''; // 同源（浏览器演示）；Electron 下改为服务器地址
+const API = 'http://125.77.25.229:3001'; // 服务器地址（浏览器演示同源时也可用相对 ''）
 const rows = document.getElementById('rows');
 const msg = document.getElementById('msg');
 

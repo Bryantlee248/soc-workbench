@@ -1,12 +1,33 @@
 {
   "name": "soc-workbench",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "main": "client/main.js",
   "scripts": {
     "start": "node server/main.mjs",
     "test": "node --test",
-    "ingest": "node server/ingest-cli.mjs"
+    "ingest": "node server/ingest-cli.mjs",
+    "dist": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.soc.workbench",
+    "productName": "SOC告警研判台",
+    "files": [
+      "client/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.4.3",
+    "electron-builder": "^26.15.3"
   }
 }
