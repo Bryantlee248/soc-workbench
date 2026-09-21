@@ -1,4 +1,4 @@
-const API = 'http://127.0.0.1:3000';
+const API = ''; // 同源（浏览器演示）；Electron 下改为服务器地址
 const rows = document.getElementById('rows');
 const msg = document.getElementById('msg');
 
