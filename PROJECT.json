@@ -8,10 +8,8 @@
   },
   "state": {
     "current_gate": "G0",
-    "active_work_items": [
-      "W-001"
-    ],
-    "next_work_item": "W-001"
+    "active_work_items": [],
+    "next_work_item": null
   },
   "authority": {
     "governance": "GOVERNANCE.md",
@@ -52,7 +50,7 @@
       {
         "id": "IWP-001",
         "roadmap_id": "W-001",
-        "status": "APPROVED",
+        "status": "CLOSED",
         "approval": "PR#1",
         "primary": "实施AI",
         "verifier": "验证AI",
@@ -121,5 +119,14 @@
       "status": "approved"
     }
   ],
-  "superseded": []
+  "superseded": [],
+  "evidence_anchors": [
+    {
+      "id": "ANCHOR-001",
+      "path": "engine/dedup.mjs",
+      "line": 7,
+      "sha256": "06d66e70edefa4eae8ee576c23eff7d9fa39ca2bdf5363ec214cf641f81ee14e",
+      "claim": "engine 按 fingerprint 去重并计数"
+    }
+  ]
 }
