@@ -12,12 +12,13 @@ const clientDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'client');
 function serveStatic(res, file, type) {
   const p = join(clientDir, file);
   if (!existsSync(p)) { res.writeHead(404); res.end('not found'); return; }
-  res.writeHead(200, { 'Content-Type': type });
+  res.writeHead(200, { 'Content-Type': type, ...CORS });
   res.end(readFileSync(p, 'utf8'));
 }
 
+const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' };
 function json(res, code, obj) {
-  res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8' });
+  res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', ...CORS });
   res.end(JSON.stringify(obj));
 }
 function readBody(req) {
@@ -34,6 +35,7 @@ export function createServer() {
     const url = new URL(req.url, 'http://localhost');
     const p = url.pathname;
     try {
+      if (req.method === 'OPTIONS') { res.writeHead(204, CORS); res.end(); return; }
       if (req.method === 'GET' && p === '/healthz') return json(res, 200, { status: 'ok' });
       if (req.method === 'GET' && p === '/') return serveStatic(res, 'index.html', 'text/html; charset=utf-8');
       if (req.method === 'GET' && p === '/renderer.js') return serveStatic(res, 'renderer.js', 'text/javascript; charset=utf-8');

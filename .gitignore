@@ -20,3 +20,7 @@ Thumbs.db
 
 # 备份（zip 快照不入 git）
 backups/*.zip
+
+# 构建产物
+node_modules/
+dist/
