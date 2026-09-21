@@ -1,11 +1,12 @@
 {
   "name": "soc-workbench",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "main": "client/main.js",
   "scripts": {
     "start": "node server/main.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "ingest": "node server/ingest-cli.mjs"
   }
 }
