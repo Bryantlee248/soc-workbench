@@ -1,9 +1,20 @@
 import http from 'node:http';
 import { randomUUID } from 'node:crypto';
 import { load, save } from './store.mjs';
+import { readFileSync, existsSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { dedupe } from '../engine/dedup.mjs';
 
 const SEVERITIES = ['low', 'medium', 'high', 'critical'];
+const clientDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'client');
+
+function serveStatic(res, file, type) {
+  const p = join(clientDir, file);
+  if (!existsSync(p)) { res.writeHead(404); res.end('not found'); return; }
+  res.writeHead(200, { 'Content-Type': type });
+  res.end(readFileSync(p, 'utf8'));
+}
 
 function json(res, code, obj) {
   res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8' });
@@ -24,6 +35,8 @@ export function createServer() {
     const p = url.pathname;
     try {
       if (req.method === 'GET' && p === '/healthz') return json(res, 200, { status: 'ok' });
+      if (req.method === 'GET' && p === '/') return serveStatic(res, 'index.html', 'text/html; charset=utf-8');
+      if (req.method === 'GET' && p === '/renderer.js') return serveStatic(res, 'renderer.js', 'text/javascript; charset=utf-8');
 
       if (p === '/alerts') {
         if (req.method === 'GET') {
