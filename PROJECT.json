@@ -1,7 +1,18 @@
 {
   "schema_version": 1,
-  "project": { "id": "soc-workbench", "name": "SOC Alert Workbench", "governance_level": "L2", "lifecycle": "poc" },
-  "state": { "current_gate": "G0", "active_work_items": ["W-001"], "next_work_item": "W-001" },
+  "project": {
+    "id": "soc-workbench",
+    "name": "SOC Alert Workbench",
+    "governance_level": "L2",
+    "lifecycle": "poc"
+  },
+  "state": {
+    "current_gate": "G0",
+    "active_work_items": [
+      "W-001"
+    ],
+    "next_work_item": "W-001"
+  },
   "authority": {
     "governance": "GOVERNANCE.md",
     "roadmap": "ROADMAP.md",
@@ -9,44 +20,106 @@
     "worklog": "WORKLOG.md",
     "human_authorizer": "Bryantlee248"
   },
-  "roles": { "architecture": "架构AI", "delivery": ["实施AI"], "verifier": "验证AI" },
-  "enforcement": { "file_ownership": true },
+  "roles": {
+    "architecture": "架构AI",
+    "delivery": [
+      "实施AI"
+    ],
+    "verifier": "验证AI"
+  },
+  "enforcement": {
+    "file_ownership": true
+  },
   "effective": {
     "decisions": [
-      { "id": "D-001", "status": "accepted", "supersedes": [] },
-      { "id": "D-002", "status": "accepted", "supersedes": [] },
-      { "id": "D-003", "status": "accepted", "supersedes": [] }
+      {
+        "id": "D-001",
+        "status": "accepted",
+        "supersedes": []
+      },
+      {
+        "id": "D-002",
+        "status": "accepted",
+        "supersedes": []
+      },
+      {
+        "id": "D-003",
+        "status": "accepted",
+        "supersedes": []
+      }
     ],
     "work_packages": [
       {
         "id": "IWP-001",
         "roadmap_id": "W-001",
-        "status": "READY",
-        "approval": "",
+        "status": "APPROVED",
+        "approval": "PR#1",
         "primary": "实施AI",
         "verifier": "验证AI",
         "contributors": [],
         "integrator": null,
         "file_ownership": [
-          { "owner": "实施AI", "paths": ["client/", "server/", "engine/", "test/", "package.json"] }
+          {
+            "owner": "实施AI",
+            "paths": [
+              "client/",
+              "server/",
+              "engine/",
+              "test/",
+              "package.json"
+            ]
+          }
         ]
       }
     ],
     "artifacts": []
   },
   "gates": [
-    { "id": "G0", "status": "planned", "approval": null },
-    { "id": "G1", "status": "planned", "approval": null },
-    { "id": "G2", "status": "planned", "approval": null },
-    { "id": "G3", "status": "planned", "approval": null },
-    { "id": "G4", "status": "planned", "approval": null }
+    {
+      "id": "G0",
+      "status": "planned",
+      "approval": null
+    },
+    {
+      "id": "G1",
+      "status": "planned",
+      "approval": null
+    },
+    {
+      "id": "G2",
+      "status": "planned",
+      "approval": null
+    },
+    {
+      "id": "G3",
+      "status": "planned",
+      "approval": null
+    },
+    {
+      "id": "G4",
+      "status": "planned",
+      "approval": null
+    }
   ],
   "environments": [
-    { "id": "SRV-229", "purpose": "部署演示环境（125.77.25.229，Ubuntu 22.04 + Node22 + pm2）", "status": "active", "data_class": "nonproduction" }
+    {
+      "id": "SRV-229",
+      "purpose": "部署演示环境（125.77.25.229，Ubuntu 22.04 + Node22 + pm2）",
+      "status": "active",
+      "data_class": "nonproduction"
+    }
   ],
   "components": [
-    { "id": "SOC-CLIENT", "role": "桌面研判台（Electron）", "status": "approved" },
-    { "id": "SOC-SERVER", "role": "告警聚合 + 事件库 + 规则引擎（Node + JSON/SQLite）", "status": "approved" }
+    {
+      "id": "SOC-CLIENT",
+      "role": "桌面研判台（Electron）",
+      "status": "approved"
+    },
+    {
+      "id": "SOC-SERVER",
+      "role": "告警聚合 + 事件库 + 规则引擎（Node + JSON/SQLite）",
+      "status": "approved"
+    }
   ],
   "superseded": []
 }
