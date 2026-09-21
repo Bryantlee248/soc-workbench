@@ -1,0 +1,9 @@
+# 治理控制面所有权（架构负责人 / 人类授权人）
+/PROJECT.json @CHANGE-ME
+/GOVERNANCE.md @CHANGE-ME
+/ROADMAP.md @CHANGE-ME
+/DECISIONS.md @CHANGE-ME
+/WORKLOG.md @CHANGE-ME
+/scripts/ @CHANGE-ME
+
+# 实施方路径由 PROJECT.json 的 effective.work_packages[].file_ownership 声明，并在 PR 中带 gov:paths 标记。

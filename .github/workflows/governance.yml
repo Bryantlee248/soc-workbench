@@ -1,0 +1,33 @@
+name: Governance
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  validate:
+    name: Validate governance control plane
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Local governance gate
+        run: node scripts/validate-governance.mjs
+
+      - name: "CI governance gate (PR: file ownership + authoritative-doc same-change)"
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: node scripts/validate-governance.mjs --ci --base "${{ github.event.pull_request.base.sha }}"

@@ -1,0 +1,26 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  converge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: converge (gaps must be 0)
+        run: node tools/converge.mjs
+  independent-verify:
+    # 独立 job/上下文：只读产物，不看 agent 自述（堵"自我美化"）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: independent verify (artifact-based)
+        run: node tools/verify.mjs
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: project build & test
+        run: echo "TODO: replace with real build/test (mvn/npm), then e2e"

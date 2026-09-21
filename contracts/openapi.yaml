@@ -1,0 +1,202 @@
+openapi: 3.0.3
+info:
+  title: SOC Alert Workbench API
+  version: 1.0.0
+  description: 告警研判最小垂直切片（合成数据）
+paths:
+  /healthz:
+    get:
+      summary: 健康检查
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /alerts:
+    get:
+      summary: 告警列表（聚合/去重后）
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [open, triaged, resolved, ignored]
+      responses:
+        '200':
+          description: 告警数组
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alert'
+    post:
+      summary: 注入合成告警
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertInput'
+      responses:
+        '201':
+          description: 已入库（或去重命中已有告警）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+  /alerts/{id}/triage:
+    post:
+      summary: 研判（确认 / 误报）
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [verdict]
+              properties:
+                verdict:
+                  type: string
+                  enum: [confirmed, false_positive]
+                note:
+                  type: string
+      responses:
+        '200':
+          description: 研判结果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '404':
+          description: 告警不存在
+  /alerts/{id}/disposition:
+    post:
+      summary: 处置标记（已处置 / 忽略）
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [disposition]
+              properties:
+                disposition:
+                  type: string
+                  enum: [resolved, ignored]
+                note:
+                  type: string
+      responses:
+        '200':
+          description: 处置结果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '404':
+          description: 告警不存在
+  /events:
+    get:
+      summary: 事件列表
+      responses:
+        '200':
+          description: 事件数组
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+    post:
+      summary: 从已确认告警生成事件
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [alert_id]
+              properties:
+                alert_id:
+                  type: string
+      responses:
+        '201':
+          description: 已生成事件
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: 告警未确认
+components:
+  schemas:
+    AlertInput:
+      type: object
+      required: [title, fingerprint, severity]
+      properties:
+        title:
+          type: string
+          minLength: 1
+        fingerprint:
+          type: string
+          minLength: 1
+        source:
+          type: string
+        severity:
+          type: string
+          enum: [low, medium, high, critical]
+    Alert:
+      allOf:
+        - $ref: '#/components/schemas/AlertInput'
+        - type: object
+          required: [id, status, verdict, disposition, createdAt]
+          properties:
+            id:
+              type: string
+            status:
+              type: string
+              enum: [open, triaged, resolved, ignored]
+            verdict:
+              type: string
+              enum: [pending, confirmed, false_positive]
+            disposition:
+              type: string
+              enum: [pending, resolved, ignored]
+            note:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+    Event:
+      type: object
+      required: [id, alert_id, title, createdAt]
+      properties:
+        id:
+          type: string
+        alert_id:
+          type: string
+        title:
+          type: string
+        disposition:
+          type: string
+        createdAt:
+          type: string
+          format: date-time

@@ -1,0 +1,22 @@
+# 依赖与产物
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+target/
+dist/
+build/
+
+# 密钥与本地配置（一律环境注入，不入库）
+.env
+.env.local
+*.local.json
+runtime-config.json
+local_settings.json
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 备份（zip 快照不入 git）
+backups/*.zip
